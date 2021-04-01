@@ -31,11 +31,11 @@ const checkAuthentication = (req, res, next) => {
     return next();
   }
 
-  if (req.path === AVATARS_PATH && req.method === 'POST') {
+  if (req.path === AVATAR_PATH && req.method === 'POST') {
     return next();
   }
 
-  if (req.path === AVATAR_PATH) {
+  if (req.path === AVATARS_PATH) {
     return next();
   }
 
