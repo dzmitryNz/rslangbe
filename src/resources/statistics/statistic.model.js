@@ -13,7 +13,35 @@ const StatisticSchema = new Schema(
     },
     optional: {
       type: Object,
-      required: false
+      required: true
+    },
+    vocabulary: {
+      type: Object,
+      required: true
+    },
+    call: {
+      type: Object,
+      required: true
+    },
+    speakit: {
+      type: Object,
+      required: true
+    },
+    sprint: {
+      type: Object,
+      required: true
+    },
+    ourgame: {
+      type: Object,
+      required: true
+    },
+    puzzle: {
+      type: Object,
+      required: true
+    },
+    savanna: {
+      type: Object,
+      required: true
     }
   },
   { collection: 'statistic' }

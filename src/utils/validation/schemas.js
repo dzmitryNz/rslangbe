@@ -13,7 +13,8 @@ const optionalScheme = Joi.object()
     Joi.number(),
     Joi.boolean(),
     Joi.date(),
-    Joi.object()
+    Joi.object(),
+    Joi.array()
   ])
   .custom(optionalValidator, 'optional object validation')
   .error(errors => {
@@ -50,7 +51,14 @@ const schemas = {
         .integer()
         .min(0)
         .max(100000),
-      optional: optionalScheme
+      optional: optionalScheme,
+      vocabulary: optionalScheme,
+      call: optionalScheme,
+      speakit: optionalScheme,
+      sprint: optionalScheme,
+      ourgame: optionalScheme,
+      puzzle: optionalScheme,
+      savanna: optionalScheme
     }),
   settings: Joi.object()
     .options({ abortEarly: false, allowUnknown: false })
@@ -59,7 +67,14 @@ const schemas = {
         .integer()
         .min(1)
         .max(1000),
-      optional: optionalScheme
+      optional: optionalScheme,
+      vocabulary: optionalScheme,
+      call: optionalScheme,
+      speakit: optionalScheme,
+      sprint: optionalScheme,
+      ourgame: optionalScheme,
+      puzzle: optionalScheme,
+      savanna: optionalScheme
     })
 };
 
