@@ -1,6 +1,7 @@
 const logger = require('./common/logging');
+var https = require( "https" );
+var fs = require( "fs" );
 
-// uncaughtException is been catching by Winston
 process.on('unhandledRejection', reason => {
   process.emit('uncaughtException', reason);
 });
@@ -8,6 +9,11 @@ process.on('unhandledRejection', reason => {
 const mongoose = require('mongoose');
 const { PORT, MONGO_CONNECTION_STRING } = require('./common/config');
 const app = require('./app');
+
+const httpsOptions = {
+    cert: fs.readFileSync('/react2021/rslang/rslangbe/src/cert/rslang-cert.crt'), 
+    key: fs.readFileSync('/react2021/rslang/rslangbe/src/cert/rslang-key.key')
+};
 
 mongoose.connect(MONGO_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -22,8 +28,9 @@ db.on('error', () => logger.error('MongoDB connection error:')).once(
   'open',
   () => {
     logger.info('Successfully connect to DB');
-    app.listen(PORT, () =>
+    // https.createServer(httpsOptions, app).listen(443);
+      // logger.info(`App is running on https://localhost`)
+    https.createServer(httpsOptions, app).listen(443)
       logger.info(`App is running on http://localhost:${PORT}`)
-    );
-  }
-);
+    // app.listen(PORT, () =>
+  });
