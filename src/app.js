@@ -6,6 +6,7 @@ const path = require('path');
 const YAML = require('yamljs');
 const morgan = require('morgan');
 const cors = require('cors');
+const multer = require('multer');
 const helmet = require('helmet');
 require('express-async-errors');
 const { NOT_FOUND } = require('http-status-codes');
@@ -30,11 +31,10 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 app.use(helmet());
 app.use(cors());
 
-const multer = require('multer');
 
 const storageConf = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'avatars')
+        cb(null, '/root/rslangBe/avatars')
     },
     filename: (req, file, cb) => {
       console.log(file.originalname)
@@ -47,6 +47,8 @@ var upload = multer({storage: storageConf}).single('file')
 app.post("/avatar", async (req, res) => {
 
   upload(req, res, async (err) => {
+     if (err) console.log(err);
+
      if(err instanceof multer.MulterError) {
        console.log(multer.MulterError)
     }

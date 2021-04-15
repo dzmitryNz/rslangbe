@@ -38,6 +38,6 @@ db.on('error', () => logger.error('MongoDB connection error:')).once(
     //    app.listen(PORT, () => {
     //    logger.info(`App is running on http://localhost:${PORT}`)
     // })
-    https.createServer(httpsOptions, app).listen(443)
+    https.createServer(httpsOptions, app).listen(PORT)
     logger.info(`App is running on https://localhost:${PORT}`)
   });
