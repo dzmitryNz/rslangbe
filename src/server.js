@@ -1,5 +1,5 @@
 const logger = require('./common/logging');
-var https = require( "https" );
+// var https = require( "https" );
 var fs = require( "fs" );
 
 process.on('unhandledRejection', reason => {
@@ -11,10 +11,10 @@ const { PORT, MONGO_CONNECTION_STRING } = require('./common/config');
 const app = require('./app');
 
 //Unix path
-const httpsOptions = {
-    cert: fs.readFileSync('/etc/ssl/certs/rslang.crt'), 
-    key: fs.readFileSync('/etc/ssl/certs/rslang.key')
-};
+// const httpsOptions = {
+//     cert: fs.readFileSync('/etc/ssl/certs/rslang.crt'), 
+//     key: fs.readFileSync('/etc/ssl/certs/rslang.key')
+// };
 
 // Windows path
 // const httpsOptions = {
@@ -35,9 +35,10 @@ db.on('error', () => logger.error('MongoDB connection error:')).once(
   'open',
   () => {
     logger.info('Successfully connect to DB');
-    // https.createServer(httpsOptions, app).listen(443);
-      // logger.info(`App is running on https://localhost`)
-    https.createServer(httpsOptions, app).listen(PORT)
-      logger.info(`App is running on https://localhost:${PORT}`)
-    // app.listen(PORT, () =>
+       app.listen(PORT, () => {
+       logger.info(`App is running on http://localhost:${PORT}`)
+
+    })
+    // https.createServer(httpsOptions, app).listen(PORT)
+      // logger.info(`App is running on https://localhost:${PORT}`)
   });

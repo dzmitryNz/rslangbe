@@ -34,7 +34,6 @@ const multer = require('multer');
 
 const storageConf = multer.diskStorage({
     destination: (req, file, cb) => {
-    console.log(req.body)
         cb(null, 'avatars')
     },
     filename: (req, file, cb) => {
