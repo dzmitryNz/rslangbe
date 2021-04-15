@@ -11,8 +11,11 @@ back-end Таска "Rslang" команда #108
 - создать файл .env в корне папки src следующего содержания:
 
 PORT=4000
+
 MONGO_CONNECTION_STRING="mongodb+srv://<LOGIN>:<PASSWORD>@<URL>.mongodb.net/learnwords?retryWrites=true&w=majority"
+
 JWT_SECRET_KEY="<SECRET_KEY>"
+
 JWT_REFRESH_SECRET_KEY="<REFRESH_SECRET_KEY>"
 
 - после успешной установки можно запустить приложение командой node src/server.js, 
